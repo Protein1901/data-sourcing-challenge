@@ -1,0 +1,75 @@
+# NASA CME-GST Data Integration Project
+
+## Project Overview
+This project involves retrieving Coronal Mass Ejection (CME) and Geomagnetic Storm (GST) data from NASA's DONKI API, processing the data, and analyzing the relationships between CME and GST events. The final dataset merges CME and GST events, linking their activity IDs and timestamps for further exploration and research.
+
+## Dataset Description
+The primary dataset contains the following columns:
+
+- **gstID**: Unique identifier for each GST event.
+- **startTime_GST**: Start time of the GST event.
+- **CME_ActivityID**: Associated CME activity ID linked to a GST event.
+- **cmeID**: Unique identifier for each CME event.
+- **startTime_CME**: Start time of the CME event.
+- **GST_ActivityID**: Associated GST activity ID linked to a CME event.
+- **timeDiff**: Time difference between the CME and GST events.
+
+Additionally, processed columns:
+
+- **CME_ID_List**: List of unique CME activity IDs extracted from `CME_ActivityID`.
+- **GST_ID_List**: List of unique GST activity IDs extracted from `GST_ActivityID`.
+
+## Workflow
+
+### Step 1: Data Retrieval
+- Fetch CME and GST data from NASA's DONKI API.
+- Use a specified date range (e.g., 2013-05-01 to 2024-05-01).
+- Preview and store the JSON response in a structured format.
+
+### Step 2: Data Cleaning and Processing
+- Extract relevant fields such as activity IDs and timestamps.
+- Handle nested or list-like data structures using helper functions.
+- Apply transformations to ensure uniform formatting of IDs and timestamps.
+
+### Step 3: Data Integration
+- Merge CME and GST datasets on common fields.
+- Calculate derived fields such as `timeDiff` to analyze relationships.
+
+### Step 4: Data Analysis
+- Explore the relationships between CME and GST events using the final merged dataset.
+- Identify patterns or anomalies for further research.
+
+## How to Use
+
+### Prerequisites
+1. **Python Libraries**:
+   - pandas
+   - requests
+   - json
+   - dotenv
+
+2. **API Key**:
+   - Obtain an API key from NASA's Open APIs ([link](https://api.nasa.gov)).
+   - Store the key in a `.env` file as `NASA_API_KEY`.
+
+### Instructions
+1. Clone this repository to your local machine.
+2. Ensure all dependencies are installed using `pip install -r requirements.txt`.
+3. Run the `retrieve_data_complete.ipynb` notebook step by step.
+4. Inspect the resulting dataset and use the generated `CME_ID_List` and `GST_ID_List` for further analysis.
+
+## Dependencies
+
+The project requires the following Python libraries:
+
+- pandas
+- requests
+- json
+- dotenv
+- os
+- datetime
+
+Install these dependencies using the command:
+
+```bash
+pip install pandas requests python-dotenv
